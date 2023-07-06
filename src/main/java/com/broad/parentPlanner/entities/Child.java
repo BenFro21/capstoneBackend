@@ -1,29 +1,29 @@
 package com.broad.parentPlanner.entities;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+
 @Entity
-@Table(name = "Users")
+@Table(name = "Children")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Child {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
-    private String email;
+    private String name;
 
     @Column
-    private String username;
+    private Integer parent_id;
 
     @Column
-    private String password;
-
+    private HashSet<String> activities;
 }
