@@ -1,5 +1,7 @@
 package com.broad.parentPlanner.entities;
 
+import com.broad.parentPlanner.dtos.ActivityDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,9 +25,6 @@ public class Activity {
     private String title;
 
     @Column
-    private HashSet<String> kids;
-
-    @Column
     private String description;
 
     @Column
@@ -33,6 +32,22 @@ public class Activity {
 
     @Column
     private boolean completed = false;
+
+    @ManyToOne
+    @JsonBackReference
+    private Child child;
+
+    public Activity(ActivityDto activityDto){
+        if(activityDto.getTitle() != null){
+            this.title = activityDto.getTitle();
+        }
+        if(activityDto.getDescription() != null){
+            this.description = activityDto.getDescription();
+        }
+        if(activityDto.getStartDate() != null){
+            this.startDate = activityDto.getStartDate();
+        }
+    }
 
 
 }
