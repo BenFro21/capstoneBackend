@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -21,6 +21,7 @@ public class UserServiceImpl {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Override
     @Transactional
     public List<String> addUser(UserDto userDto){
         List<String> response = new ArrayList<>();
@@ -31,8 +32,20 @@ public class UserServiceImpl {
     }
 
     // doing email instead of username
-    public List<String> userLogin(UserDto userDto){
+    @Override
+    public List<String> userLogin(UserDto userDto) {
         List<String> response = new ArrayList<>();
         Optional<User> userOptional = userRepository.findByEmail(userDto.getEmail());
+        if (userOptional.isPresent()) {
+            if (passwordEncoder.matches(userDto.getPassword(), userOptional.get().getPassword())) {
+                response.add("User login successful");
+                response.add(String.valueOf(userOptional.get().getId()));
+            } else {
+                response.add("Email or password incorrect");
+            }
+        }else{
+            response.add("Username or Password incorrect");
+    }
+        return response;
     }
 }
