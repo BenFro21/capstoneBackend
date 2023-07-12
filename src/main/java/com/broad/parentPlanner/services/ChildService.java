@@ -11,4 +11,7 @@ public interface ChildService {
 
     @Transactional
     void deleteChildById(Long childId);
+
+    @Transactional
+    List<ChildDto> getAllChildByUserId(Long userId);
 }
