@@ -28,7 +28,7 @@ public class Activity {
     private String description;
 
     @Column
-    private Date startDate;
+    private String startDate;
 
     @Column
     private boolean completed = false;

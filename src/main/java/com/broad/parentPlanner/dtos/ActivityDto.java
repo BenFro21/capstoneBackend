@@ -21,7 +21,7 @@ public class ActivityDto implements Serializable {
 
     private String description;
 
-    private Date startDate;
+    private String startDate;
 
     private boolean completed = false;
 
