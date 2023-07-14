@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOptional = userRepository.findByEmail(userDto.getEmail());
         if (userOptional.isPresent()) {
             if (passwordEncoder.matches(userDto.getPassword(), userOptional.get().getPassword())) {
-                response.add("User login successful");
+
                 response.add(String.valueOf(userOptional.get().getId()));
                 response.add(userOptional.get().getUsername());
             } else {
