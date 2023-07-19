@@ -22,7 +22,7 @@ public class ChildServiceImpl implements ChildService {
     private ChildRepository childRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 
     @Override

@@ -41,7 +41,7 @@ public class ActivityController {
     }
 
     // update existing activity
-    @PutMapping
+    @PutMapping("/{activityId}")
     public void updateActivity(@RequestBody ActivityDto activityDto){
         activityService.updateActivityById(activityDto);
     }
